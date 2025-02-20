@@ -16,6 +16,13 @@ jobs:
         with:
           terraform_version: 1.0.0
 
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          aws-access-key-id: ${{ AKIAQ3EGRLBUZVUZG5ZR }}
+          aws-secret-access-key: ${{ TUXCcvynbHztKH877yvqknr8BAP7IqtUA62CCXj5 }}
+          aws-region: eu-central-1  # Replace with your AWS region
+
       - name: Terraform Init
         run: terraform init
 
