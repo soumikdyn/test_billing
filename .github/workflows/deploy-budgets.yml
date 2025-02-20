@@ -1,7 +1,7 @@
 name: Deploy AWS Budgets
 on:
   schedule:
-    - cron: '0 21 * * *'  # Runs every day at 14:00 UTC
+    - cron: '0 21 * * *'  # Runs every day at 21:00 UTC (9:00 PM UTC)
   workflow_dispatch:  # Allows manual triggering
 
 jobs:
@@ -15,7 +15,14 @@ jobs:
         uses: hashicorp/setup-terraform@v2
         with:
           terraform_version: 1.0.0
-          
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          aws-access-key-id: AKIAQ3EGRLBUZVUZG5ZR
+          aws-secret-access-key: TUXCcvynbHztKH877yvqknr8BAP7IqtUA62CCXj5
+          aws-region: eu-central-1  # Replace with your AWS region
+
       - name: Terraform Init
         run: terraform init
 
